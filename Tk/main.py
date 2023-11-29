@@ -41,41 +41,6 @@ if __name__ == "__main__" :
     window.title("Python's Concepts")
     window.config(bg="#ffffff")
 
-    # THE WINDOW MENU :
-    menuBar = Menu(window)
-
-    fileMenu = Menu(menuBar, tearoff=0)  # tearoff=0 means that the file menu is attached to the menu bar
-    fileMenu.add_command(label="New Concept")
-    fileMenu.add_separator()
-    fileMenu.add_command(label="Exit",command=window.destroy)
-    menuBar.add_cascade(label='File', menu=fileMenu)
-
-
-    #TheViewMenu
-    viewMenu = Menu(menuBar, tearoff=0)
-    modeSubMenu = Menu(menuBar, tearoff=0)
-    modeSubMenu.add_command(label="Light")
-    modeSubMenu.add_command(label="Dark")
-    viewMenu.add_cascade(label='Mode',menu=modeSubMenu)
-
-    menuBar.add_cascade(label='View', menu=viewMenu)
-
-    #The edit Menu
-    editMenu = Menu(menuBar, tearoff=0)
-    editMenu.add_cascade(label='Preferences')
-    editMenu.add_cascade(label='Full Screen')
-
-    menuBar.add_cascade(label='Edit', menu=editMenu)
-
-    helpMenu = Menu(menuBar, tearoff=0)
-    helpMenu.add(CASCADE, label="Documentation")
-    helpMenu.add(CASCADE, label="Who Am I?")
-    menuBar.add_cascade(label='Help', menu=helpMenu)
-    menuBar.config(bg="#ff2220")
-
-    window.config(menu=menuBar)
-
-
     ###DIMENSIONS
     #The width and the height of the window
     window_width = int(400*2.4)
@@ -94,6 +59,39 @@ if __name__ == "__main__" :
     #To place the root widget and to modify its dimension we use geometry(widthxheight+-x+-y)
     window.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
     window.minsize(window_width,window_height)
+
+    # THE WINDOW MENU :
+    menuBar = Menu(window)
+
+    fileMenu = Menu(menuBar, tearoff=0)  # tearoff=0 means that the file menu is attached to the menu bar
+    fileMenu.add_command(label="New Concept")
+    fileMenu.add_separator()
+    fileMenu.add_command(label="Exit", command=window.destroy)
+    menuBar.add_cascade(label='File', menu=fileMenu)
+
+    # TheViewMenu
+    viewMenu = Menu(menuBar, tearoff=0)
+    modeSubMenu = Menu(menuBar, tearoff=0)
+    modeSubMenu.add_command(label="Light")
+    modeSubMenu.add_command(label="Dark")
+    viewMenu.add_cascade(label='Mode', menu=modeSubMenu)
+
+    menuBar.add_cascade(label='View', menu=viewMenu)
+
+    # The edit Menu
+    editMenu = Menu(menuBar, tearoff=0)
+    editMenu.add_cascade(label='Preferences')
+    editMenu.add_cascade(label='Full Screen')
+
+    menuBar.add_cascade(label='Edit', menu=editMenu)
+
+    helpMenu = Menu(menuBar, tearoff=0)
+    helpMenu.add(CASCADE, label="Documentation")
+    helpMenu.add(CASCADE, label="Who Am I?")
+    menuBar.add_cascade(label='Help', menu=helpMenu)
+    menuBar.config(bg="#ff2220")
+
+    window.config(menu=menuBar)
 
     #Creating a ttk frame and adding it to the window with the grid(geometry manager similar to pack)
     #FRAME_1
