@@ -1,10 +1,11 @@
 from tkinter import *
+from events import *
 def SetUp(window):
 	# THE WINDOW MENU :
     menuBar = Menu(window)
 
     fileMenu = Menu(menuBar, tearoff=0)  # tearoff=0 means that the file menu is attached to the menu bar
-    fileMenu.add_command(label="New Concept")
+    fileMenu.add_command(label="New Concept",command=lambda:OpenNew(window)) #Lambda is used as wraper to allow passing argument
     fileMenu.add_separator()
     fileMenu.add_command(label="Exit", command=window.destroy)
     menuBar.add_cascade(label='File', menu=fileMenu)

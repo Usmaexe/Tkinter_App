@@ -5,6 +5,9 @@ from events import *
 # The width and the height of the window
 window_width = int(400 * 2.4)
 window_height = int(350 * 1.6)
+
+
+#THINK ABOUT USING SELF
 def SetUp():
 	#Creating a window widget and labeling it
     window = Tk()
@@ -40,54 +43,26 @@ def Padding(window,sets) :
 
     return window
 
-def fsu(window,defaultPadding=30):
-    # Creating a ttk frame and adding it to the window with the grid(geometry manager similar to pack)
-    # FRAME_1
-    frame = ttk.Frame(window, padding=defaultPadding)
-    frame.grid(row=1, column=1)
-    label = ttk.Label(frame, text="Cryptage").grid(row=1, column=1)
-    button = ttk.Button(frame, text="see more")
-    button.bind('<Button-1>', showCryptage)
-    button.grid(row=2, column=1)
+def fsu(window, defaultPadding, nbFrames, names, actions):
+    frame0 = ttk.Frame(window)
+    frame0.grid()
 
-    # FRAME_2
-    frame2 = ttk.Frame(window, padding=defaultPadding)
-    frame2.grid(row=1, column=2)
-    label = ttk.Label(frame2, text="Ai").grid(row=1, column=1)
-    button = ttk.Button(frame2, text="see more")
-    button.bind('<Button-1>', showAi)
-    button.grid(row=2, column=1)
+    # Dictionary to manage frames and buttons:
+    frames = {}
+    buttons = {}
 
-    # FRAME_3
-    frame3 = ttk.Frame(window, padding=defaultPadding)
-    frame3.grid(row=2, column=1)
-    label = ttk.Label(frame3, text="POO").grid(row=1, column=1)
-    button = ttk.Button(frame3, text="see more")
-    button.bind('<Button-1>', showPOO)
-    button.grid(row=2, column=1)
+    for i in range(nbFrames):
+        name = f"frame_{i}"
+        function_name = actions[i]
 
-    # FRAME_4
-    frame4 = ttk.Frame(window, padding=defaultPadding)
-    frame4.grid(row=2, column=2)
-    label = ttk.Label(frame4, text="FILES").grid(row=1, column=1)
-    button = ttk.Button(frame4, text="see more")
-    button.bind('<Button-1>', showFiles)
-    button.grid(row=2, column=1)
+        my_lambda = lambda event, frame=frame0, func=function_name: globals()[func](event, frame)
 
-    # FRAME_5
-    frame5 = ttk.Frame(window, padding=defaultPadding)
-    frame5.grid(row=3, column=1)
-    label = ttk.Label(frame5, text="TKINTER").grid(row=1, column=1)
-    button = ttk.Button(frame5, text="see more")
-    button.bind('<Button-1>', showTkinter)
-    button.grid(row=2, column=1)
-
-    # FRAME_6
-    frame6 = ttk.Frame(window, padding=defaultPadding)
-    frame6.grid(row=3, column=2)
-    label = ttk.Label(frame6, text="ALGORITHMS").grid(row=1, column=1)
-    button = ttk.Button(frame6, text="see more")
-    button.bind('<Button-1>', showAlgos)
-    button.grid(row=2, column=1)
+        frames[name] = ttk.Frame(frame0, padding=defaultPadding)
+        frames[name].grid(row=int((i / 2) + 1), column=(i % 2) + 1)
+        label = ttk.Label(frames[name], text=f"{names[i]}").grid(row=1, column=1)
+        buttons[name] = ttk.Button(frames[name], text="see more")
+        buttons[name].bind('<Button-1>', my_lambda)
+        buttons[name].grid(row=2, column=1)
 
     return window
+

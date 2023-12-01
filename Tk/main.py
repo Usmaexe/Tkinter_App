@@ -2,9 +2,6 @@ from windowSetUp import *
 from menuSetUp import SetUp as msu
 from widgetStyling import *
 
-
-
-
 #COMPLETE modularing the project and set behaviour to the show more button
 if __name__ == "__main__" :
     #Local Variables
@@ -19,7 +16,10 @@ if __name__ == "__main__" :
     window = msu(window)
 
     #Frame SetUp
-    window = fsu(window,defaultPadding)
+    names = ["Cryptage","AI","POO","Files","Tkinter","Algorithms"]
+    actions = ["showCryptage","showAi","showPOO","showFiles","showAlgorithms","showTkinter"]
+    #icons = []
+    window = fsu(window,defaultPadding,6,names,actions)
 
     #Calling Methodes of windowSetUps to place the widget and to set its internal padding :
     window = Dimensions(window,center_x,center_y)

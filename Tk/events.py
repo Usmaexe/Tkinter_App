@@ -1,25 +1,34 @@
 import secrets
+from tkinter import *
+
+'''
 def hoverHandling(event):
     list=[chr(c) for c in range(97,123)]
     word=''.join(secrets.choice(list) for _ in range(5))
     button.config(text=word)
+'''
 
-def showCryptage(event):
-    print("hello")
+#This Method is used to clear the window
+def frameClear(frame):
+    frame.grid_remove()
 
-def showAi(event):
+def showCryptage(event,frame):
+    frameClear(frame)
+
+
+def showAi(event,frame):
     print("hello ai")
 
-def showFiles(event):
+def showFiles(event,frame):
     print("hello fil")
 
-def showPOO(event):
+def showPOO(event,frame):
     print("hello po")
 
-def showTkinter(event):
+def showTkinter(event,frame):
     print("hello tk")
 
-def showAlgos(event):
+def showAlgorithms(event,frame):
     print(event)
 
 
