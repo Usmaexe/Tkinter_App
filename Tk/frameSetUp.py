@@ -1,6 +1,6 @@
 from tkinter import ttk
 from events import *
-class Frame :
+class FrameBuilder :
 	def __init__(self, w,defaultPadding, nbFrames, names, actions):
 		frame0 = ttk.Frame(w.window)
 		frame0.grid()

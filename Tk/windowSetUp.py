@@ -13,6 +13,7 @@ class Window :
         self.window.title(windowTitle)
         self.window.config(bg=bgColor)
 
+
     def Dimensions(self):
 
         ###DIMENSIONS
@@ -33,7 +34,7 @@ class Window :
 
     def Padding(self, sets) :
 
-        y_padding = self.window.winfo_screenheight() - (2 * sets[1]) - (sets[2] * sets[3] * 2)
+        y_padding = self.window.winfo_screenheight() - (2 * sets[1]) - (5 * sets[2] * 2)
         self.window.configure(padx=sets[0], pady=y_padding)
 
 
