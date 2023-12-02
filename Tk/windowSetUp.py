@@ -1,68 +1,74 @@
-from tkinter import *
 from tkinter import ttk
 from events import *
 
-# The width and the height of the window
-window_width = int(400 * 2.4)
-window_height = int(350 * 1.6)
+class Window :
+
+    #The window constructure :
+    #It Allow to create a window widget using tk, specifing the width, the height, the icon, title and bg color
+    def __init__(self,iconPath,windowTitle,bgColor,wh,ww):
+        self.window_height = wh
+        self.window_width = ww
+        self.window = Tk()
+        self.window.iconbitmap(iconPath)
+        self.window.title(windowTitle)
+        self.window.config(bg=bgColor)
+
+    def Dimensions(self):
+
+        ###DIMENSIONS
+        # The width and the height of the screen used :
+        screen_w = self.window.winfo_screenwidth()
+        screen_h = self.window.winfo_screenheight()
+
+        # Centring the self :
+        center_x = int(screen_w / 2 - self.window_width / 2)
+        center_y = int(screen_h / 2 - self.window_height / 2)
+
+        #To place the root widget and to modify its dimension we use geometry(widthxheight+-x+-y)
+        self.window.geometry(f'{self.window_width}x{self.window_height}+{center_x}+{center_y}')
+        self.window.minsize(self.window_width, self.window_height)
+
+        return center_x, center_y
 
 
-#THINK ABOUT USING SELF
-def SetUp():
-	#Creating a window widget and labeling it
-    window = Tk()
-    window.iconbitmap("Assets/windowLogo.ico")
-    window.title("Python's Concepts")
-    window.config(bg="#ffffff")
+    def Padding(self, sets) :
 
-    ###DIMENSIONS
-
-    #The width and the height of the screen used :
-    screen_w = window.winfo_screenwidth()
-    screen_h = window.winfo_screenheight()
-
-    #Centring the window :
-    center_x = int(screen_w/2 - window_width/2)
-    center_y = int(screen_h/2 - window_height/2)
+        y_padding = self.window.winfo_screenheight() - (2 * sets[1]) - (sets[2] * sets[3] * 2)
+        self.window.configure(padx=sets[0], pady=y_padding)
 
 
-    return window,center_x,center_y
 
-def Dimensions(window,center_x,center_y):
+    def Menu(self):
+        # THE WINDOW MENU :
+        menuBar = Menu(self.window)
 
-    #To place the root widget and to modify its dimension we use geometry(widthxheight+-x+-y)
-    window.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
-    window.minsize(window_width,window_height)
+        fileMenu = Menu(menuBar, tearoff=0)  # tearoff=0 means that the file menu is attached to the menu bar
+        fileMenu.add_command(label="New Concept", command=lambda:OpenNew(self.window)) #Lambda is used as wraper to allow passing argument
+        fileMenu.add_separator()
+        fileMenu.add_command(label="Exit", command=self.window.destroy)
+        menuBar.add_cascade(label='File', menu=fileMenu)
 
-    return window
+        # TheView Menu
+        viewMenu = Menu(menuBar, tearoff=0)
+        modeSubMenu = Menu(menuBar, tearoff=0)
+        modeSubMenu.add_command(label="Light")
+        modeSubMenu.add_command(label="Dark")
+        viewMenu.add_cascade(label='Mode', menu=modeSubMenu)
 
-def Padding(window,sets) :
+        menuBar.add_cascade(label='View', menu=viewMenu)
 
-    y_padding = window.winfo_screenheight() - (2 * sets[1]) - (sets[2] * sets[3] * 2)
-    window.configure(padx=sets[0], pady=y_padding)
+        # The edit Menu
+        editMenu = Menu(menuBar, tearoff=0)
+        editMenu.add_cascade(label='Preferences')
+        editMenu.add_cascade(label='Full Screen')
 
-    return window
+        menuBar.add_cascade(label='Edit', menu=editMenu)
 
-def fsu(window, defaultPadding, nbFrames, names, actions):
-    frame0 = ttk.Frame(window)
-    frame0.grid()
+        helpMenu = Menu(menuBar, tearoff=0)
+        helpMenu.add(CASCADE, label="Documentation")
+        helpMenu.add(CASCADE, label="Who Am I?")
+        menuBar.add_cascade(label='Help', menu=helpMenu)
+        menuBar.config(bg="#ff2220")
 
-    # Dictionary to manage frames and buttons:
-    frames = {}
-    buttons = {}
-
-    for i in range(nbFrames):
-        name = f"frame_{i}"
-        function_name = actions[i]
-
-        my_lambda = lambda event, frame=frame0, func=function_name: globals()[func](event, frame)
-
-        frames[name] = ttk.Frame(frame0, padding=defaultPadding)
-        frames[name].grid(row=int((i / 2) + 1), column=(i % 2) + 1)
-        label = ttk.Label(frames[name], text=f"{names[i]}").grid(row=1, column=1)
-        buttons[name] = ttk.Button(frames[name], text="see more")
-        buttons[name].bind('<Button-1>', my_lambda)
-        buttons[name].grid(row=2, column=1)
-
-    return window
+        self.window.config(menu=menuBar)
 

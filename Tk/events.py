@@ -8,28 +8,32 @@ def hoverHandling(event):
     button.config(text=word)
 '''
 
-#This Method is used to clear the window
+#This Method is used to clear the Window
 def frameClear(frame):
     frame.grid_remove()
+
 
 def showCryptage(event,frame):
     frameClear(frame)
 
 
 def showAi(event,frame):
-    print("hello ai")
+    frameClear(frame)
+
 
 def showFiles(event,frame):
-    print("hello fil")
+    frameClear(frame)
+
 
 def showPOO(event,frame):
-    print("hello po")
+    frameClear(frame)
+
 
 def showTkinter(event,frame):
-    print("hello tk")
+    frameClear(frame)
 
 def showAlgorithms(event,frame):
-    print(event)
+    frameClear(frame)
 
 
 def OpenNew(window):
