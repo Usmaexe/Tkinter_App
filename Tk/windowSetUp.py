@@ -12,6 +12,7 @@ class Window :
         self.window.iconbitmap(iconPath)
         self.window.title(windowTitle)
         self.window.config(bg=bgColor)
+        self.window.winfo_width()
 
 
     def Dimensions(self):

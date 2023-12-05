@@ -1,7 +1,7 @@
 import secrets
 from tkinter import *
 from tkinter import ttk
-
+from Help import helpFunctions
 '''
 def hoverHandling(event):
     list=[chr(c) for c in range(97,123)]
@@ -11,22 +11,28 @@ def hoverHandling(event):
 
 #This Method is used to clear the Window
 
-def frameReset(frame):
+#The removed frame is restored and we remove the return button
+def frameReset(event,frame):
     frame.grid()
+    event.widget.grid_remove()
+    #To adjust the return Button we should use the padding method
 
-def frameClear(frame):
-    #frame = frame0 created in frameSetUp
+#def frameRemove(frame):
 
+
+# HERE WE REMOVE THE CURRENT FRAME THAT CONTAIN BUTTONS AND WE DISPLAY THE SHOW MORE OF A SPECIFIED MENU
+def frameClear(frame):#frame = frame0 created in frameSetUp
     # REMOVING the current frame layout
     currentWindow = frame.winfo_toplevel()
     frame.grid_remove()
-
+    
     # CREATING new frame layout
     newFrame = ttk.Frame(currentWindow)
-    newFrame.grid()
-    returnButton = ttk.Button(newFrame,text="return")
-    returnButton.bind('<Button-1>',func = frameReset(frame))
-    returnButton.grid(row=1, column=1, padx=10, pady=20)
+    newFrame.grid(row=0,column=0)
+    returnButton = ttk.Button(newFrame, text="return")
+    returnButton.bind('<Button-1>', lambda event: frameReset(event,frame))#Lambda function make sure that the function isn't called directly
+    returnButton.grid(row=1, column=1,sticky="NW")
+    print(helpFunctions.stylename_elements_options(Grid))
 
 
 
