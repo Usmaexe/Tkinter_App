@@ -2,12 +2,12 @@ from windowSetUp import *
 from widgetStyling import *
 from frameSetUp import FrameBuilder
 
-names = ["Cryptage","AI","POO","Files","Tkinter","Algorithms"]
-actions = ["showCryptage","showAi","showPOO","showFiles","showAlgorithms","showTkinter"]
-defaultPadding=50
+
 #icons = []
 def rootPage():
-
+    names = ["Cryptage", "AI", "POO", "Files", "Tkinter", "Algorithms"]
+    actions = ["showCryptage", "showAi", "showPOO", "showFiles", "showAlgorithms", "showTkinter"]
+    defaultPadding = 50
     # Root Window SetUp
     root = Window("Assets/windowLogo.ico", "Python's Concepts", "#ffffff", int(350 * 1.6), int(400 * 2.4))
 
@@ -16,7 +16,7 @@ def rootPage():
 
     # FRAME SetUp
 
-    frame = FrameBuilder(root, defaultPadding, len(names), names, actions)
+    frame = FrameBuilder(root, defaultPadding, len(names),"Problemes", names, actions)
 
     # SPACE MANAGING
     #Calling Methodes of windowSetUps to place the widget and to set its internal padding :
