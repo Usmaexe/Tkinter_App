@@ -1,0 +1,3 @@
+The subprocess module present in Python(both 2.x and 3.x)
+is used to run new applications or programs through Python code by creating new processes.
+It also helps to obtain the input/output/error pipes as well as the exit codes of various commands.

@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from events import *
+from displayExercices import *
 
 class FrameBuilder() :
 	def __init__(self,w,defaultPadding, nbFrames,content, names, actions):
@@ -15,13 +16,10 @@ class FrameBuilder() :
 			name = f"frame_{i}"
 			function_name = actions[i]
 			
-			# here func keyword is used to specify the function to be called when the button is clicked
-			# If lambda keyword is used the last assigned function will be called
-			# cause lambda call the last method assigned when the button is clicked and not when the code is written
 			##IF AN EXCEPTION OCCURED IS MOSTLY BECAUSE OF THE USE OF FRAME BUILDER(THE ACTUALL CLASS IN THE EVENT FILE)
-			my_lambda = lambda event, framePa=self.frame, func=function_name: globals()[func](event, frame)
+			my_lambda = lambda event, framePa=self.frame, func=function_name: globals()[func](event, framePa)
 			
-			frames[name] = ttk.Frame(self.frame, padding=defaultPadding)
+			frames[name] = ttk.Frame(self.frame ,padding=defaultPadding)
 			frames[name].grid(row=int((i / 2) + 1), column=(i % 2) + 1)
 			
 			ttk.Label(frames[name], text=f"{names[i]}").grid(row=1, column=1)

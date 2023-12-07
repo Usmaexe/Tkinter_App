@@ -44,7 +44,7 @@ def showCryptage(event,frame,window):
     returnButton.grid(row=1, column=1,sticky="NW")
     cryptageFrame = FrameBuilder(window, 50, nbExos, "Solution",
                              [f"exo{i}" for i in range(nbExos)],
-                             [f"CryptageExo{i}" for i in range(nbExos)])
+                             [f"CryptageExo{i}" for i in range(1,nbExos+1)])
     returnButton.bind('<Button-1>', lambda event: frameReset(event,frame,cryptageFrame))#Lambda function make sure that the function isn't called directly
     
 
@@ -64,16 +64,6 @@ def showTkinter(event,frame, win):
 def showAlgorithms(event,frame, win):
     frameClear(frame)
 
-def CryptageExo1(event, frame):
-    print("hello 1")
-
-
-def CryptageExo2(event, frame):
-    print("hello 2")
-
-
-def CryptageExo3(event, frame):
-    print("hello 3")
 
 def OpenNew(window):
     window.destroy()
