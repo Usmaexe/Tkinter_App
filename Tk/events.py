@@ -1,4 +1,4 @@
-import secrets
+import subprocess
 from tkinter import *
 from tkinter import ttk
 from frameExercices import FrameBuilder
@@ -34,17 +34,20 @@ def frameClear(frame):#frame = frame0 created in frameSetUp
 
 
 def showCryptage(event,frame,window):
-    nbExos = 3
+    output = subprocess.check_output(["ls","Cryptographie"],shell=True)
+    exos=list((output.decode('utf-8')).split('\n'))
+    exos.remove("")
+    exos.remove("__pycache__")
+    #print(exos)
     frameClear(frame)
     
     # CREATING new frame layout
     newFrame = ttk.Frame(window.window)
     newFrame.grid(row=0,column=0)
-    returnButton = ttk.Button(newFrame, text="return")
+    returnButton = ttk.Button(newFrame, text="Return")
     returnButton.grid(row=1, column=1,sticky="NW")
-    cryptageFrame = FrameBuilder(window, 50, nbExos, "Solution",
-                             [f"exo{i}" for i in range(nbExos)],
-                             [f"CryptageExo{i}" for i in range(1,nbExos+1)])
+    #(self,w,defaultPadding, nbFrames,content, names, actions)
+    cryptageFrame = FrameBuilder(window, 10, len(exos), "Cryptographie",exos)
     returnButton.bind('<Button-1>', lambda event: frameReset(event,frame,cryptageFrame))#Lambda function make sure that the function isn't called directly
     
 

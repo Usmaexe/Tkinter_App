@@ -1,5 +1,7 @@
 from tkinter import ttk
 from events import *
+
+#This class is to build the second frame that is displayed when the show button is clicked on each section
 class FrameBuilder :
 	def __init__(self, w,defaultPadding, nbFrames,content, names, actions):
 		frame0 = ttk.Frame(w.window)
