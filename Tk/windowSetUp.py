@@ -33,13 +33,19 @@ class Window :
         return center_x, center_y
 
 
+
     def Padding(self, sets) :
 
         y_padding = self.window.winfo_screenheight() - (2 * sets[1]) - (5 * sets[2] * 2)
         self.window.configure(padx=sets[0], pady=y_padding)
 
 
+    def ModeChanging(self):
+        print(self.mode.get())
 
+    def set_default_mode(self,mode:IntVar):
+        self.mode.set(mode.get())  # Set Light mode as default
+    
     def Menu(self):
         # THE WINDOW MENU :
         menuBar = Menu(self.window)
@@ -53,10 +59,14 @@ class Window :
         # TheView Menu
         viewMenu = Menu(menuBar, tearoff=0)
         modeSubMenu = Menu(menuBar, tearoff=0)
-        modeSubMenu.add_command(label="Light")
-        modeSubMenu.add_command(label="Dark")
-        viewMenu.add_cascade(label='Mode', menu=modeSubMenu)
+        self.mode = IntVar(value=1)  # Initialize mode variable
 
+        modeSubMenu.add_checkbutton(label="Light", variable=self.mode, onvalue=1, command=lambda: self.ModeChanging())
+        modeSubMenu.add_checkbutton(label="Dark", variable=self.mode, onvalue=2, command=lambda: self.ModeChanging())
+
+        self.set_default_mode(IntVar(value=1))
+        
+        viewMenu.add_cascade(label='Mode', menu=modeSubMenu)
         menuBar.add_cascade(label='View', menu=viewMenu)
 
         # The edit Menu

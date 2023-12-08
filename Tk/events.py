@@ -70,7 +70,7 @@ def showAi(event, frame, win):
 def showFiles(event,frame, win):
     # The following Line of codes retrives the output of the ls command
     # Convert it to a list(exos)
-    output = subprocess.check_output(["ls", "Concepts/Files"], shell=True)
+    output = subprocess.check_output(["ls", "Concepts/Files_Managing"], shell=True)
     exos = list((output.decode('utf-8')).split('\n'))
     try:
         exos.remove("")
@@ -88,7 +88,7 @@ def showFiles(event,frame, win):
     returnButton = ttk.Button(newFrame, text="Return")
     returnButton.grid(row=1, column=1, sticky="NW")
     
-    FilesFrame = FrameBuilder(win, 10, len(exos), "Concepts/Files", exos)
+    FilesFrame = FrameBuilder(win, 10, len(exos), "Concepts/Files_Managing", exos)
     returnButton.bind('<Button-1>', lambda event: frameReset(event, frame, FilesFrame))
     # Lambda function make sure that the function isn't called directly
 

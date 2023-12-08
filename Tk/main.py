@@ -5,7 +5,7 @@ from frameSetUp import FrameBuilder
 
 #icons = []
 def rootPage():
-    names = ["Cryptage", "AI", "POO", "Files", "Tkinter", "Algorithms"]
+    names = ["Cryptage", "AI", "POO", "Files Managing", "Tkinter", "Algorithms"]
     actions = ["showCryptage", "showAi", "showPOO", "showFiles", "showTkinter", "showAlgorithms"]
     defaultPadding = 50
     # Root Window SetUp
