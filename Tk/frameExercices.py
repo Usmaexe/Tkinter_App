@@ -4,7 +4,7 @@ from events import *
 from displayExercices import *
 
 class FrameBuilder() :
-	def __init__(self, w, defaultPadding, nbFrames, directory, actions):
+	def __init__(self, w, defaultPadding:int, nbFrames:int, directory:str, actions:list[str]):
 		self.frame = ttk.Frame(w.window)
 		self.frame.grid()
 		

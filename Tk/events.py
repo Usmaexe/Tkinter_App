@@ -2,17 +2,7 @@ import subprocess
 from tkinter import *
 from tkinter import ttk
 from frameExercices import FrameBuilder
-#from frameSetUp import FrameBuilder
 
-
-'''
-def hoverHandling(event):
-    list=[chr(c) for c in range(97,123)]
-    word=''.join(secrets.choice(list) for _ in range(5))
-    button.config(text=word)
-'''
-
-#This Method is used to clear the Window
 
 #The removed frame is restored and we remove the return button
 def frameReset(event,frame,newFrame):
@@ -21,51 +11,169 @@ def frameReset(event,frame,newFrame):
     event.widget.grid_remove()
     #To adjust the return Button we should use the padding method
 
-#def frameRemove(frame):
-
-
-# HERE WE REMOVE THE CURRENT FRAME THAT CONTAIN BUTTONS AND WE DISPLAY THE SHOW MORE OF A SPECIFIED MENU
-def frameClear(frame):#frame = frame0 created in frameSetUp
-    # REMOVING the current frame layout
-    currentWindow = frame.winfo_toplevel()
+def showCryptage(event,frame,win):
+    
+    #Removing the Current Frame (Menu)
     frame.grid_remove()
     
-    
-
-
-def showCryptage(event,frame,window):
-    output = subprocess.check_output(["ls","Cryptographie"],shell=True)
+    #The following Line of codes retrives the output of the ls command
+    #Convert it to a list(exos)
+    output = subprocess.check_output(["ls","Concepts/Cryptographie"],shell=True)
     exos=list((output.decode('utf-8')).split('\n'))
-    exos.remove("")
-    exos.remove("__pycache__")
-    #print(exos)
-    frameClear(frame)
+    try :
+        exos.remove("")
+        exos.remove("__pycache__")
+    except Exception as e:
+        print(e)
+        
     
     # CREATING new frame layout
-    newFrame = ttk.Frame(window.window)
+    newFrame = ttk.Frame(win.window)
     newFrame.grid(row=0,column=0)
+    
+    # THE RETURN BUTTON CREATED AND ADDED TO THE GRID
     returnButton = ttk.Button(newFrame, text="Return")
     returnButton.grid(row=1, column=1,sticky="NW")
-    #(self,w,defaultPadding, nbFrames,content, names, actions)
-    cryptageFrame = FrameBuilder(window, 10, len(exos), "Cryptographie",exos)
+    
+    
+    cryptageFrame = FrameBuilder(win, 10, len(exos), "Concepts/Cryptographie",exos)
     returnButton.bind('<Button-1>', lambda event: frameReset(event,frame,cryptageFrame))#Lambda function make sure that the function isn't called directly
     
 
 def showAi(event, frame, win):
-    frameClear(frame)
+    #The following Line of codes retrives the output of the ls command
+    #Convert it to a list(exos)
+    output = subprocess.check_output(["ls","Concepts/NLP"],shell=True)
+    exos=list((output.decode('utf-8')).split('\n'))
+    try :
+        exos.remove("")
+        exos.remove("__pycache__")
+    except Exception as e:
+        print(e)
+        
+    frame.grid_remove()
+    
+    
+    # CREATING new frame layout That will contain Buttons to open the files
+    newFrame = ttk.Frame(win.window)
+    newFrame.grid(row=0,column=0)
+    
+    #The return Button
+    returnButton = ttk.Button(newFrame, text="Return")
+    returnButton.grid(row=1, column=1,sticky="NW")
+    
+    NlpFrame = FrameBuilder(win, 10, len(exos), "Concepts/NLP",exos)
+    returnButton.bind('<Button-1>', lambda event: frameReset(event,frame,NlpFrame))
+    #Lambda function make sure that the function isn't called directly
+    
+
 def showFiles(event,frame, win):
-    frameClear(frame)
+    # The following Line of codes retrives the output of the ls command
+    # Convert it to a list(exos)
+    output = subprocess.check_output(["ls", "Concepts/Files"], shell=True)
+    exos = list((output.decode('utf-8')).split('\n'))
+    try:
+        exos.remove("")
+        exos.remove("__pycache__")
+    except Exception as e:
+        print(e)
+    
+    frame.grid_remove()
+    
+    # CREATING new frame layout That will contain Buttons to open the files
+    newFrame = ttk.Frame(win.window)
+    newFrame.grid(row=0, column=0)
+
+    # The return Button
+    returnButton = ttk.Button(newFrame, text="Return")
+    returnButton.grid(row=1, column=1, sticky="NW")
+    
+    FilesFrame = FrameBuilder(win, 10, len(exos), "Concepts/Files", exos)
+    returnButton.bind('<Button-1>', lambda event: frameReset(event, frame, FilesFrame))
+    # Lambda function make sure that the function isn't called directly
 
 
 def showPOO(event,frame, win):
-    frameClear(frame)
+    # The following Line of codes retrives the output of the ls command
+    # Convert it to a list(exos)
+    output = subprocess.check_output(["ls", "Concepts/OOP"], shell=True)
+    exos = list((output.decode('utf-8')).split('\n'))
+    print(exos)
+    try:
+        exos.remove("")
+        exos.remove("__pycache__")
+    except Exception as e:
+        print(e)
+    
+    frame.grid_remove()
+    
+    # CREATING new frame layout That will contain Buttons to open the files
+    newFrame = ttk.Frame(win.window)
+    newFrame.grid(row=0, column=0)
+    
+    # The return Button
+    returnButton = ttk.Button(newFrame, text="Return")
+    returnButton.grid(row=1, column=1, sticky="NW")
+    
+    OopFrame = FrameBuilder(win, 10, len(exos), "Concepts/OOP", exos)
+    returnButton.bind('<Button-1>', lambda event: frameReset(event, frame, OopFrame))
+    # Lambda function make sure that the function isn't called directly
 
 
 def showTkinter(event,frame, win):
-    frameClear(frame)
+    frame.grid_remove()
+    # The following Line of codes retrives the output of the ls command
+    # Convert it to a list(exos)
+    output = subprocess.check_output(["ls", "Concepts/Tkinter"], shell=True)
+    exos = list((output.decode('utf-8')).split('\n'))
+    print(exos)
+    try:
+        exos.remove("")
+        exos.remove("__pycache__")
+    except Exception as e:
+        print(e)
+
+    frame.grid_remove()
+
+    # CREATING new frame layout That will contain Buttons to open the files
+    newFrame = ttk.Frame(win.window)
+    newFrame.grid(row=0, column=0)
+
+    # The return Button
+    returnButton = ttk.Button(newFrame, text="Return")
+    returnButton.grid(row=1, column=1, sticky="NW")
+
+    TkinterFrame = FrameBuilder(win, 10, len(exos), "Concepts/Tkinter", exos)
+    returnButton.bind('<Button-1>', lambda event: frameReset(event, frame, TkinterFrame))
+    # Lambda function make sure that the function isn't called directly
+
 
 def showAlgorithms(event,frame, win):
-    frameClear(frame)
+    frame.grid_remove()
+    # The following Line of codes retrives the output of the ls command
+    # Convert it to a list(exos)
+    output = subprocess.check_output(["ls", "Concepts/Algos"], shell=True)
+    exos = list((output.decode('utf-8')).split('\n'))
+    print(exos)
+    try:
+        exos.remove("")
+        exos.remove("__pycache__")
+    except Exception as e:
+        print(e)
+    
+    frame.grid_remove()
+    
+    # CREATING new frame layout That will contain Buttons to open the files
+    newFrame = ttk.Frame(win.window)
+    newFrame.grid(row=0, column=0)
+    
+    # The return Button
+    returnButton = ttk.Button(newFrame, text="Return")
+    returnButton.grid(row=1, column=1, sticky="NW")
+    
+    AlgosFrame = FrameBuilder(win, 10, len(exos), "Concepts/Algos", exos)
+    returnButton.bind('<Button-1>', lambda event: frameReset(event, frame, AlgosFrame))
+    # Lambda function make sure that the function isn't called directly
 
 
 def OpenNew(window):
