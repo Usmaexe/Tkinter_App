@@ -2,14 +2,13 @@ import subprocess
 from tkinter import *
 from tkinter import ttk
 from frameExercices import FrameBuilder
+import windowSetUp
 
-
-#The removed frame is restored and we remove the return button
 def frameReset(event,frame,newFrame):
     frame.grid()
     newFrame.remove()
     event.widget.grid_remove()
-    #To adjust the return Button we should use the padding method
+    #To adjust the positioning of return Button we should use the padding method
 
 def showCryptage(event,frame,win):
     
@@ -176,8 +175,10 @@ def showAlgorithms(event,frame, win):
     # Lambda function make sure that the function isn't called directly
 
 
-def OpenNew(window):
-    window.destroy()
-    window2 = Tk()
-    print("Hello")
-    window2.mainloop()
+def CreateNew(window):
+    #1ST LINE : CREATE THE NEW WINDOW, 2ND LINE : SET DIMENSIONS AND POSITION ON THE SCREEN TO IT
+    newConceptWindow = windowSetUp.NewConcept("Assets/windowLogo.ico", "New Concept", "#ffffff", int(350 * 1.1), int(400 * 1.6))
+    newConceptWindow.Dimensions()
+    newConceptWindow.window.focus_force()#To ensure that the new widget gets the focus
+    name,files = newConceptWindow.receive()
+    newConceptWindow.window.mainloop()

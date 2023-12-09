@@ -1,7 +1,7 @@
 from tkinter import ttk
 from events import *
 
-class Window :
+class Root :
 
     #The window constructure :
     #It Allow to create a window widget using tk, specifing the width, the height, the icon, title and bg color
@@ -31,9 +31,7 @@ class Window :
         self.window.minsize(self.window_width, self.window_height)
 
         return center_x, center_y
-
-
-
+    
     def Padding(self, sets) :
 
         y_padding = self.window.winfo_screenheight() - (2 * sets[1]) - (5 * sets[2] * 2)
@@ -51,7 +49,7 @@ class Window :
         menuBar = Menu(self.window)
 
         fileMenu = Menu(menuBar, tearoff=0)  # tearoff=0 means that the file menu is attached to the menu bar
-        fileMenu.add_command(label="New Concept", command=lambda:OpenNew(self.window)) #Lambda is used as wraper to allow passing argument
+        fileMenu.add_command(label="New Concept", command=lambda:CreateNew(self.window)) #Lambda is used as wraper to allow passing argument
         fileMenu.add_separator()
         fileMenu.add_command(label="Exit", command=self.window.destroy)
         menuBar.add_cascade(label='File', menu=fileMenu)
@@ -84,3 +82,16 @@ class Window :
 
         self.window.config(menu=menuBar)
 
+class NewConcept(Root):
+    def __init__(self, iconPath, windowTitle, bgColor, wh, ww):
+        super().__init__(iconPath, windowTitle, bgColor, wh, ww)
+        
+    def Dimensions(self):
+        super().Dimensions()
+    
+    #This methode is done to receive the name and the files from the user input and passing them
+    #To events.NewConcept() method to grid them into the new window
+    
+    def Receive(self):
+        print("hello")
+        

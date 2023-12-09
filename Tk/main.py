@@ -8,8 +8,8 @@ def rootPage():
     names = ["Cryptage", "AI", "POO", "Files Managing", "Tkinter", "Algorithms"]
     actions = ["showCryptage", "showAi", "showPOO", "showFiles", "showTkinter", "showAlgorithms"]
     defaultPadding = 50
-    # Root Window SetUp
-    root = Window("Assets/windowLogo.ico", "Python's Concepts", "#ffffff", int(350 * 1.6), int(400 * 2.4))
+    # Root Root SetUp
+    root = Root("Assets/windowLogo.ico", "Python's Concepts", "#ffffff", int(350 * 1.6), int(400 * 2.4))
 
     # MENU SetUp
     root.Menu()
@@ -32,10 +32,10 @@ def rootPage():
 
     root.window.mainloop()
 
+
 #COMPLETE modularing the project and set behaviour to the show more button
 if __name__ == "__main__" :
 
     #Local Variables
-
     rootPage()
 
