@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import ttk
 from events import *
-from displayExercices import *
 
 class FrameBuilder() :
 	def __init__(self, w, defaultPadding:int, nbFrames:int, directory:str, actions:list[str]):

@@ -1,7 +1,8 @@
-from tkinter import ttk
+from tkinter import simpledialog
 from events import *
 
-class Root :
+
+class Root() :
 
     #The window constructure :
     #It Allow to create a window widget using tk, specifing the width, the height, the icon, title and bg color
@@ -82,16 +83,10 @@ class Root :
 
         self.window.config(menu=menuBar)
 
-class NewConcept(Root):
-    def __init__(self, iconPath, windowTitle, bgColor, wh, ww):
-        super().__init__(iconPath, windowTitle, bgColor, wh, ww)
-        
-    def Dimensions(self):
-        super().Dimensions()
-    
-    #This methode is done to receive the name and the files from the user input and passing them
-    #To events.NewConcept() method to grid them into the new window
-    
-    def Receive(self):
-        print("hello")
-        
+class NewConcept(simpledialog.Dialog):
+        def Customized(self):
+            self.title="New Concept"
+            
+            self.entry = Entry(self)
+            
+            

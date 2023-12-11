@@ -1,6 +1,6 @@
 import subprocess
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, simpledialog, filedialog
 from frameExercices import FrameBuilder
 import windowSetUp
 
@@ -177,8 +177,18 @@ def showAlgorithms(event,frame, win):
 
 def CreateNew(window):
     #1ST LINE : CREATE THE NEW WINDOW, 2ND LINE : SET DIMENSIONS AND POSITION ON THE SCREEN TO IT
-    newConceptWindow = windowSetUp.NewConcept("Assets/windowLogo.ico", "New Concept", "#ffffff", int(350 * 1.1), int(400 * 1.6))
-    newConceptWindow.Dimensions()
-    newConceptWindow.window.focus_force()#To ensure that the new widget gets the focus
-    name,files = newConceptWindow.receive()
-    newConceptWindow.window.mainloop()
+    conceptName = simpledialog.askstring(title="New Concept",prompt="Enter a value")
+    fileTypes = [
+        ("PDF files", "*.pdf"),
+        ("Python files", "*.py"),
+        ("Jupyter Notebook files", "*.ipynb"),
+        ("All files", "*.*")
+    ]
+    #Default mode is read
+    filesNames = filedialog.askopenfilenames(title="Select Files",filetypes=fileTypes,initialfile="Help/Guide.txt")
+    
+    print(conceptName)
+    if filesNames :
+        for file in filesNames :
+            print(file)
+    
